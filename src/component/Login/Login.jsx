@@ -16,7 +16,7 @@ const provider = new GoogleAuthProvider();
     return (
         <div>
             <p>Please Log in</p>
-            <button onClick={handleOnClick}>Sign in with Golgle</button>
+            <button onClick={handleOnClick}>plz Sign in with Golgle</button>
         </div>
     );
 };
