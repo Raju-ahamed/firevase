@@ -15,7 +15,7 @@ const provider = new GoogleAuthProvider();
     }
     return (
         <div>
-            <p>Please Log in</p>
+            <p>Please Log in with gmail</p>
             <button onClick={handleOnClick}>plz Sign in with Golgle</button>
         </div>
     );
