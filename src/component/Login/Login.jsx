@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { auth } from '../firebase/firebase.init';
 const Login = () => {
@@ -15,6 +15,15 @@ const Login = () => {
         })
 
     }
+    const githubProvider = new GithubAuthProvider();
+    const handleOnGithub =()=>{
+        signInWithPopup(auth,githubProvider).then(resut=>{
+            setUser(resut.user)
+            console.log(resut.user)
+        }).catch(error=>{
+            console.log(error)
+        })
+    }
     const handleSignOut =()=>{
         signOut(auth).then(()=>{
             setUser(null);
@@ -26,12 +35,19 @@ const Login = () => {
     return (
         <div>
             <p>Please Log in with gmail</p>
-            <button onClick={handleOnClick}>plz Sign in with Golgle</button>
+            {
+                user ? <button onClick={handleSignOut}>sgin out</button> : <>
+                    <button onClick={handleOnClick}>plz Sign in with Golgle</button>
+                    <button onClick={handleOnGithub}>plz Sign in with Github</button>
+                </>
+            }
+            
+            
             <div>
                 <h3>{user?.displayName}</h3>
                 <p>Email:{user?.email}</p>
                 <img src={user?.photoURL} alt="image" /><br />
-                <button onClick={handleSignOut}>sgin out</button>
+               
             </div>
         </div>
     );
